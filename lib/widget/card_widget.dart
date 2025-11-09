@@ -3,17 +3,24 @@ import 'package:flutter/material.dart';
 class CardWidget extends StatelessWidget {
   const CardWidget({
     super.key,
+    this.title = 'MacBook Pro',
+    this.priceLabel = '\$1999',
+    this.imageAssetPath = 'asset/images/macbook.png',
   });
+
+  final String title;
+  final String priceLabel;
+  final String imageAssetPath;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 150,
       height: 150,
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        borderRadius: BorderRadius.horizontal(
+        borderRadius: const BorderRadius.horizontal(
           left: Radius.circular(12),
           right: Radius.circular(12),
         ),
@@ -22,12 +29,12 @@ class CardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),
             ),
             child: Image.asset(
-              'asset/images/macbook.png',
+              imageAssetPath,
               width: double.infinity,
               height: 100,
               fit: BoxFit.cover,
@@ -39,12 +46,18 @@ class CardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'MacBook Pro',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
-                  '\$1999',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  priceLabel,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
                 ),
               ],
             ),

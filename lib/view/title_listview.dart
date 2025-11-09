@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:practice4/widget/card_widget.dart';
 
 class TitleListView extends StatelessWidget {
   const TitleListView({
     super.key,
+    required this.title,
+    required this.cards,
+    this.onSeeAll,
   });
+
+  final String title;
+  final List<Widget> cards;
+  final VoidCallback? onSeeAll;
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +22,23 @@ class TitleListView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'categories',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              TextButton(onPressed: () {}, child: Text('See All')),
+              TextButton(
+                onPressed: onSeeAll ?? () {},
+                child: const Text('See All'),
+              ),
             ],
           ),
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-            ],
+            children: cards,
           ),
         ),
       ],
